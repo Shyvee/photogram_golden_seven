@@ -25,10 +25,16 @@ class PhotosController < ApplicationController
   end
 
   def edit_form
-    z = Photo.new
+    @photo = Photo.find(params["id"])
+  end
+
+  def update_row
+    z = Photo.find(params["id"])
     z.source = params["source"]
     z.caption = params["caption"]
     z.save
+
+    redirect_to("http://localhost:3000/photos/#{z.id}")
   end
 
 end
